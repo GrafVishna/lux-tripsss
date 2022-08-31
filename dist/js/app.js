@@ -62,7 +62,7 @@
     window.onload = function() {
         const parallax = document.querySelector(".main-top-wrapper");
         if (parallax) {
-            const content = document.querySelector(".parallax-main__container");
+            document.querySelector(".parallax-main__container");
             const row1 = document.querySelector(".images-paralax-2");
             const row2 = document.querySelector(".images-paralax-3");
             const row3 = document.querySelector(".images-paralax-4");
@@ -116,13 +116,7 @@
                 threshold: thresholdSets
             });
             observer.observe(document.querySelector(".content"));
-            function setParallaxItemsStyle(scrollTopProcent) {
-                content.style.cssText = `transform: translate(0%,-${scrollTopProcent / 1}%);`;
-                content.style.cssText = `transform: translate(0%,-${scrollTopProcent / 8}%);`;
-                row1.parentElement.style.cssText = `transform: translate(0%,-${scrollTopProcent / 4}%);`;
-                row2.parentElement.style.cssText = `transform: translate(0%,-${scrollTopProcent / 5}%);`;
-                row3.parentElement.style.cssText = `transform: translate(0%,-${scrollTopProcent / 6}%);`;
-            }
+            function setParallaxItemsStyle(scrollTopProcent) {}
         }
     };
     let addWindowScrollEvent = false;
