@@ -678,7 +678,7 @@ body {
   padding-bottom: 3.75rem;
   padding-top: 5rem;
   top: -16.25rem;
-  margin-bottom: -4.0625rem;
+  margin-bottom: -12.8125rem;
   pointer-events: none;
 }
 
@@ -867,6 +867,61 @@ body {
   line-height: 1.0833333333;
 }
 
+.experiences {
+  padding: 1.25rem 0;
+}
+
+.experiences__title-block {
+  position: relative;
+  max-width: 33.75rem;
+  margin: 0 auto 6.25rem auto;
+}
+
+.experiences__title-decor {
+  position: absolute;
+  top: -0.9375rem;
+  bottom: -0.9375rem;
+  left: 50%;
+  width: 9.375rem;
+  -webkit-transform: translate(-50%) rotate(50deg) skew(20deg, 10deg);
+      -ms-transform: translate(-50%) rotate(50deg) skew(20deg, 10deg);
+          transform: translate(-50%) rotate(50deg) skew(20deg, 10deg);
+  border: 1px solid #fcfcfc;
+  z-index: 10;
+}
+
+.experiences__title-decor::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 7.5%;
+  bottom: 7.5%;
+  width: 85%;
+  -webkit-transform: translate(-50%);
+      -ms-transform: translate(-50%);
+          transform: translate(-50%);
+  border: 1px solid #fcfcfc;
+}
+
+.experiences__title {
+  position: relative;
+  z-index: 11;
+  font-family: Forum;
+  line-height: 0.9666666667;
+  letter-spacing: 0em;
+  text-align: center;
+}
+
+.experiences__content {
+  text-indent: 0.9375rem;
+  font-size: 1.125rem;
+  line-height: 130%;
+}
+
+.experiences__content p:not(:last-child) {
+  margin-bottom: 0.9375rem;
+}
+
 @media (min-width: 71.3125em) {
   .parallax-main__title-top {
     font-size: 12.375rem;
@@ -878,6 +933,10 @@ body {
 
   .search__title-text {
     font-size: 1.625rem;
+  }
+
+  .experiences__title {
+    font-size: 3.75rem;
   }
 }
 
@@ -910,6 +969,10 @@ body {
 
   .search__title-text {
     font-size: 1.25rem;
+  }
+
+  .experiences__title {
+    font-size: 1.875rem;
   }
 }
 
@@ -1256,6 +1319,18 @@ body {
 @supports not (font-size: clamp( 1.25rem , 1.1038367844rem  +  0.730816078vw , 1.625rem )) {
     .search__title-text {
       font-size: calc(1.25rem + 0.375 * (100vw - 20rem) / 51.3125);
+    }
+}
+
+@supports (font-size: clamp( 1.875rem , 1.144183922rem  +  3.6540803898vw , 3.75rem )) {
+    .experiences__title {
+      font-size: clamp( 1.875rem , 1.144183922rem  +  3.6540803898vw , 3.75rem );
+    }
+}
+
+@supports not (font-size: clamp( 1.875rem , 1.144183922rem  +  3.6540803898vw , 3.75rem )) {
+    .experiences__title {
+      font-size: calc(1.875rem + 1.875 * (100vw - 20rem) / 51.3125);
     }
 }
 }
