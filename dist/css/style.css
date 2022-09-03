@@ -166,6 +166,14 @@ body {
   padding: 0 0.9375rem;
 }
 
+[data-fullscreen] {
+  min-height: 100vh;
+}
+
+.touch [data-fullscreen] {
+  min-height: calc(var(--vh, 1vh) * 100 + 10.5rem);
+}
+
 [class*=-ibg] {
   position: relative;
 }
@@ -463,6 +471,27 @@ body {
       justify-self: center;
 }
 
+.menu__blur {
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  overflow: hidden;
+  -webkit-filter: blur(13px);
+          filter: blur(13px);
+  z-index: 3;
+  -webkit-transition: opacity 0.3s ease;
+  -o-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
+}
+
 .menu__list {
   position: fexed;
   z-index: 99;
@@ -521,6 +550,11 @@ body {
   display: none;
 }
 
+.menu-open .menu__blur {
+  opacity: 1;
+  visibility: visible;
+}
+
 .menu-open .menu__list {
   opacity: 1;
   visibility: visible;
@@ -531,10 +565,10 @@ body {
   top: 0;
   left: 0;
   width: 100vw;
-  height: calc(100vh + 10rem);
+  height: calc(100vh + 10.5rem);
+  height: 100vh;
   position: relative;
   overflow: hidden;
-  position: relative;
 }
 
 .main-block::before {
@@ -903,6 +937,10 @@ body {
         -ms-transform: rotate(60deg) skew(30deg) scale(0.7);
             transform: rotate(60deg) skew(30deg) scale(0.7);
   }
+
+  .squares__wrapper-4 {
+    top: 35%;
+  }
 }
 
 @media (max-width: 59.375em) {
@@ -968,26 +1006,8 @@ body {
         justify-self: end;
   }
 
-  .no-webp .menu__blur{
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(20%, rgba(226, 211, 206, 0)), color-stop(80.71%, rgba(226, 211, 206, 0.71)), to(#e2d3ce)), url("../img/main-block/33.png") no-repeat center 100%, url("../img/main-block/22.png") no-repeat center 100%, url("../img/main-block/sky1.png") no-repeat center 100%, url("../img/main-block/sky.png") no-repeat center 100%; }
-
-  .no-webp .menu__blur{
-    background: -o-linear-gradient(top, rgba(226, 211, 206, 0) 20%, rgba(226, 211, 206, 0.71) 80.71%, #e2d3ce 100%), url("../img/main-block/33.png") no-repeat center 100%, url("../img/main-block/22.png") no-repeat center 100%, url("../img/main-block/sky1.png") no-repeat center 100%, url("../img/main-block/sky.png") no-repeat center 100%; }
-
-  .no-webp .menu__blur{
-    background: linear-gradient(180deg, rgba(226, 211, 206, 0) 20%, rgba(226, 211, 206, 0.71) 80.71%, #e2d3ce 100%), url("../img/main-block/33.png") no-repeat center 100%, url("../img/main-block/22.png") no-repeat center 100%, url("../img/main-block/sky1.png") no-repeat center 100%, url("../img/main-block/sky.png") no-repeat center 100%; }
-
   .menu__blur {
-    position: fixed;
-    top: -5%;
-    left: -5%;
-    width: 110%;
-    height: 110%;
-    background-size: cover;
-    overflow: hidden;
-    -webkit-filter: blur(13px);
-            filter: blur(13px);
-    z-index: 1;
+    display: block;
   }
 
   .menu__list {
@@ -1102,6 +1122,12 @@ body {
 }
 
 @media (max-width: 47.99875em) {
+  .touch [data-fullscreen] {
+    -webkit-transition: height 0.2s;
+    -o-transition: height 0.2s;
+    transition: height 0.2s;
+  }
+
   .squares {
     -webkit-transform: rotate(60deg) skew(30deg) scale(0.5);
         -ms-transform: rotate(60deg) skew(30deg) scale(0.5);
@@ -1110,10 +1136,15 @@ body {
 
   .squares__wrapper-1 {
     left: 35%;
+    top: 45%;
   }
 
   .squares__wrapper-3 {
     right: 15%;
+  }
+
+  .squares__wrapper-5 {
+    top: 30%;
   }
 
   .header__body {
@@ -1290,18 +1321,3 @@ body {
 .webp .images-paralax-3{ background: url(../img/main-block/22.webp) top/cover no-repeat; }
 
 .webp .images-paralax-4{ background: url(../img/main-block/33.webp) top/cover no-repeat; }
-
-@media (max-width: 50.625em){
-
-  .webp .menu__blur{ background: -webkit-gradient(linear, left top, left bottom, color-stop(20%, rgba(226, 211, 206, 0)), color-stop(80.71%, rgba(226, 211, 206, 0.71)), to(#e2d3ce)), url(../img/main-block/33.webp) no-repeat center 100%, url(../img/main-block/22.webp) no-repeat center 100%, url(../img/main-block/sky1.webp) no-repeat center 100%, url(../img/main-block/sky.webp) no-repeat center 100%; }
-}
-
-@media (max-width: 50.625em){
-
-  .webp .menu__blur{ background: -o-linear-gradient(top, rgba(226, 211, 206, 0) 20%, rgba(226, 211, 206, 0.71) 80.71%, #e2d3ce 100%), url(../img/main-block/33.webp) no-repeat center 100%, url(../img/main-block/22.webp) no-repeat center 100%, url(../img/main-block/sky1.webp) no-repeat center 100%, url(../img/main-block/sky.webp) no-repeat center 100%; }
-}
-
-@media (max-width: 50.625em){
-
-  .webp .menu__blur{ background: linear-gradient(180deg, rgba(226, 211, 206, 0) 20%, rgba(226, 211, 206, 0.71) 80.71%, #e2d3ce 100%), url(../img/main-block/33.webp) no-repeat center 100%, url(../img/main-block/22.webp) no-repeat center 100%, url(../img/main-block/sky1.webp) no-repeat center 100%, url(../img/main-block/sky.webp) no-repeat center 100%; }
-}
