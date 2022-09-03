@@ -167,11 +167,11 @@ body {
 }
 
 [data-fullscreen] {
-  min-height: 100vh;
+  min-height: calc(100vh + 10.3125rem);
 }
 
 .touch [data-fullscreen] {
-  min-height: calc(var(--vh, 1vh) * 100 + 10.5rem);
+  min-height: calc(var(--vh, 1vh) * 100 + 10.3125rem);
 }
 
 [class*=-ibg] {
@@ -565,7 +565,7 @@ body {
   top: 0;
   left: 0;
   width: 100vw;
-  height: calc(100vh + 10.5rem);
+  height: calc(100vh + 10.3125rem);
   height: 100vh;
   position: relative;
   overflow: hidden;
