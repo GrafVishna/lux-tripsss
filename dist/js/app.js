@@ -1,5 +1,6 @@
 (() => {
     "use strict";
+    const modules_flsModules = {};
     function isWebp() {
         function testWebP(callback) {
             let webP = new Image;
@@ -93,66 +94,66 @@
             }
         }));
     }
-    window.onload = function() {
-        const parallax = document.querySelector(".main-top-wrapper");
-        if (parallax) {
-            document.querySelector(".parallax-main__container");
-            const row1 = document.querySelector(".images-paralax-2");
-            const row2 = document.querySelector(".images-paralax-3");
-            const row3 = document.querySelector(".images-paralax-4");
-            const row4 = document.querySelector(".squares__wrapper-1");
-            const row5 = document.querySelector(".squares__wrapper-2");
-            const row6 = document.querySelector(".squares__wrapper-3");
-            const row7 = document.querySelector(".squares__wrapper-4");
-            const row8 = document.querySelector(".squares__wrapper-5");
-            const forRow1 = 90;
-            const forRow2 = 50;
-            const forRow3 = 20;
-            const forRow4 = 3;
-            const forRow5 = 1;
-            const forRow6 = 2;
-            const forRow7 = 3;
-            const forRow8 = 1;
-            const speed = .02;
-            let positionX = 0, positionY = 0;
-            let coordXprocent = 0, coordYprocent = 0;
-            function setMouseParallaxStyle() {
-                const distX = coordXprocent - positionX;
-                const distY = coordYprocent - positionY;
-                positionX += distX * speed;
-                positionY += distY * speed;
-                row1.style.cssText = `transform: translate(${positionX / forRow1}%,${positionY / forRow1}%);`;
-                row2.style.cssText = `transform: translate(${positionX / forRow2}%,${positionY / forRow2}%);`;
-                row3.style.cssText = `transform: translate(${positionX / forRow3}%,${positionY / forRow3}%);`;
-                row4.style.cssText = `transform: translate(${positionX / forRow4}%,${positionY / forRow4}%);`;
-                row5.style.cssText = `transform: translate(${positionX / forRow5}%,${positionY / forRow5}%);`;
-                row6.style.cssText = `transform: translate(${positionX / forRow6}%,${positionY / forRow6}%);`;
-                row7.style.cssText = `transform: translate(${positionX / forRow7}%,${positionY / forRow7}%);`;
-                row8.style.cssText = `transform: translate(${positionX / forRow8}%,${positionY / forRow8}%);`;
-                requestAnimationFrame(setMouseParallaxStyle);
-            }
-            setMouseParallaxStyle();
-            parallax.addEventListener("mousemove", (function(e) {
-                const parallaxWidth = parallax.offsetWidth;
-                const parallaxHeight = parallax.offsetHeight;
-                const coordX = e.pageX - parallaxWidth / 2;
-                const coordY = e.pageY - parallaxHeight / 2;
-                coordXprocent = coordX / parallaxWidth * 100;
-                coordYprocent = coordY / parallaxHeight * 100;
-            }));
-            let thresholdSets = [];
-            for (let i = 0; i <= 1; i += .005) thresholdSets.push(i);
-            const callback = function(entries, observer) {
-                const scrollTopProcent = window.pageYOffset / parallax.offsetHeight * 100;
-                setParallaxItemsStyle(scrollTopProcent);
+    function functions_FLS(message) {
+        setTimeout((() => {
+            if (window.FLS) console.log(message);
+        }), 0);
+    }
+    class MousePRLX {
+        constructor(props, data = null) {
+            let defaultConfig = {
+                init: true,
+                logging: true
             };
-            const observer = new IntersectionObserver(callback, {
-                threshold: thresholdSets
-            });
-            observer.observe(document.querySelector(".content"));
-            function setParallaxItemsStyle(scrollTopProcent) {}
+            this.config = Object.assign(defaultConfig, props);
+            if (this.config.init) {
+                const paralaxMouse = document.querySelectorAll("[data-prlx-mouse]");
+                if (paralaxMouse.length) {
+                    this.paralaxMouseInit(paralaxMouse);
+                    this.setLogging(`Проснулся, слежу за объектами: (${paralaxMouse.length})`);
+                } else this.setLogging("Нет ни одного объекта. Сплю...zzZZZzZZz...");
+            }
         }
-    };
+        paralaxMouseInit(paralaxMouse) {
+            paralaxMouse.forEach((el => {
+                const paralaxMouseWrapper = el.closest("[data-prlx-mouse-wrapper]");
+                const paramСoefficientX = el.dataset.prlxCx ? +el.dataset.prlxCx : 100;
+                const paramСoefficientY = el.dataset.prlxCy ? +el.dataset.prlxCy : 100;
+                const directionX = el.hasAttribute("data-prlx-dxr") ? -1 : 1;
+                const directionY = el.hasAttribute("data-prlx-dyr") ? -1 : 1;
+                const paramAnimation = el.dataset.prlxA ? +el.dataset.prlxA : 50;
+                let positionX = 0, positionY = 0;
+                let coordXprocent = 0, coordYprocent = 0;
+                setMouseParallaxStyle();
+                if (paralaxMouseWrapper) mouseMoveParalax(paralaxMouseWrapper); else mouseMoveParalax();
+                function setMouseParallaxStyle() {
+                    const distX = coordXprocent - positionX;
+                    const distY = coordYprocent - positionY;
+                    positionX += distX * paramAnimation / 1e3;
+                    positionY += distY * paramAnimation / 1e3;
+                    el.style.cssText = `transform: translate3D(${directionX * positionX / (paramСoefficientX / 10)}%,${directionY * positionY / (paramСoefficientY / 10)}%,0);`;
+                    requestAnimationFrame(setMouseParallaxStyle);
+                }
+                function mouseMoveParalax(wrapper = window) {
+                    wrapper.addEventListener("mousemove", (function(e) {
+                        const offsetTop = el.getBoundingClientRect().top + window.scrollY;
+                        if (offsetTop >= window.scrollY || offsetTop + el.offsetHeight >= window.scrollY) {
+                            const parallaxWidth = window.innerWidth;
+                            const parallaxHeight = window.innerHeight;
+                            const coordX = e.clientX - parallaxWidth / 2;
+                            const coordY = e.clientY - parallaxHeight / 2;
+                            coordXprocent = coordX / parallaxWidth * 100;
+                            coordYprocent = coordY / parallaxHeight * 100;
+                        }
+                    }));
+                }
+            }));
+        }
+        setLogging(message) {
+            this.config.logging ? functions_FLS(`[PRLX Mouse]: ${message}`) : null;
+        }
+    }
+    modules_flsModules.mousePrlx = new MousePRLX({});
     function ssr_window_esm_isObject(obj) {
         return null !== obj && "object" === typeof obj && "constructor" in obj && obj.constructor === Object;
     }
@@ -3291,6 +3292,9 @@
             destroy
         });
     }
+    window.addEventListener("resize", (function() {
+        if (window.matchMedia("(min-width: 900px)").matches) console.log("Screen width is at least 500px"); else console.log("Screen less than 500px");
+    }));
     function initSliders() {
         if (document.querySelector(".experiences-swiper")) new core(".experiences-swiper", {
             modules: [ Navigation ],
@@ -3300,6 +3304,7 @@
             spaceBetween: 30,
             autoHeight: false,
             speed: 800,
+            simulateTouch: true,
             loop: true,
             navigation: {
                 prevEl: ".experiences-swiper-button-prev",
